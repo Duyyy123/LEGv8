@@ -25,27 +25,5 @@
     display: block;
 }
 .pc-display {
-    font-size: 1.25rem;
-    color: #1d4ed8;
-}
-.add-4-component {
-    width: 0;
-    height: 0;
-    border-left: 60px solid transparent;
-    border-right: 60px solid transparent;
-    border-bottom: 100px solid #f3f4f6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.add-4-component p {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    font-weight: bold;
-    color: #374151;
+    justify-content: left;
 }

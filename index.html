@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>LEGv8 Simulator</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <script defer src="scripts/index.js"></script>
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -147,20 +148,100 @@
                 <!-- Center Panel - Main Display (Reserved for later) -->
                 <div class="flex-1 bg-white p-4 flex flex-col">
                     <div
-                        class="flex-1 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-500"
+                        class="relative w-full h-screen border-2 border-dashed border-gray-300 rounded-lg grid grid-cols-12 grid-rows-12 gap-2"
                     >
-                        <div class="text-center">
-                            <!-- Add 4 Component -->
-                            <div class="add-4-component">
-                                <p class="font-bold text-gray-700">Add 4</p>
-                            </div>
+                        <!-- PC at middle-left -->
+                        <div
+                            class="col-start-1 col-span-1 row-start-5 row-span-3 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
+                        >
+                            PC
+                        </div>
 
-                            <!-- PC Component -->
-                            <div
-                                class="w-24 h-24 border-2 border-gray-300 rounded-lg flex items-center justify-center bg-gray-100 mt-4"
-                            >
-                                <p class="font-bold text-gray-700">PC</p>
-                            </div>
+                        <!-- Instruction Memory next to PC -->
+                        <div
+                            class="col-start-3 col-span-2 row-start-6 row-span-3 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
+                        >
+                            Instruction Memory
+                        </div>
+
+                        <!-- Control around center-left -->
+                        <div
+                            class="col-start-4 col-span-2 row-start-6 row-span-2 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
+                        >
+                            Control
+                        </div>
+
+                        <!-- Registers -->
+                        <div
+                            class="col-start-6 col-span-3 row-start-5 row-span-3 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
+                        >
+                            Registers
+                        </div>
+
+                        <!-- Sign-extend -->
+                        <div
+                            class="col-start-6 col-span-2 row-start-7 row-span-2 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
+                        >
+                            Sign-extend
+                        </div>
+
+                        <!-- ALU Control -->
+                        <div
+                            class="col-start-9 col-span-2 row-start-7 row-span-2 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
+                        >
+                            ALU Control
+                        </div>
+
+                        <!-- ALU -->
+                        <div
+                            class="col-start-10 col-span-2 row-start-5 row-span-3 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
+                        >
+                            ALU
+                        </div>
+
+                        <!-- Data Memory -->
+                        <div
+                            class="col-start-12 col-span-2 row-start-5 row-span-4 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
+                        >
+                            Data Memory
+                        </div>
+
+                        <!-- Shift Left 2 -->
+                        <div
+                            class="col-start-9 col-span-2 row-start-4 row-span-1 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
+                        >
+                            Shift left 2
+                        </div>
+
+                        <!-- Add (top-right) -->
+                        <div
+                            class="col-start-10 col-span-2 row-start-3 row-span-2 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
+                        >
+                            Add
+                        </div>
+
+                        <!-- Add (top-left) -->
+                        <div
+                            class="col-start-2 col-span-1 row-start-2 row-span-2 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
+                        >
+                            Add
+                        </div>
+
+                        <!-- Muxes -->
+                        <div
+                            class="col-start-7 col-span-1 row-start-6 row-span-1 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
+                        >
+                            Mux
+                        </div>
+                        <div
+                            class="col-start-11 col-span-1 row-start-7 row-span-1 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
+                        >
+                            Mux
+                        </div>
+                        <div
+                            class="col-start-12 col-span-1 row-start-5 row-span-1 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
+                        >
+                            Mux
                         </div>
                     </div>
                 </div>
@@ -430,7 +511,5 @@
                 </div>
             </div>
         </div>
-
-        <script src="scripts/index.js"></script>
     </body>
 </html>
