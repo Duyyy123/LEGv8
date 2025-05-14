@@ -147,7 +147,8 @@
 
                 <!-- Center Panel - Main Display (Reserved for later) -->
                 <div class="flex-1 bg-white p-4 flex flex-col">
-                    <div
+                    <canvas
+                        id="mainCanvas"
                         class="relative w-full h-screen border-2 border-dashed border-gray-300 rounded-lg grid grid-cols-20 grid-rows-20 gap-4"
                     >
                         <!-- Add (top-left) -->
@@ -155,6 +156,20 @@
                             class="col-start-3 col-span-1 row-start-2 row-span-1 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
                         >
                             Add
+                        </div>
+
+                        <!-- Path Line from Add to PC -->
+                        <div
+                            class="col-start-3 col-span-1 row-start-3 row-span-1 flex items-center justify-center"
+                        >
+                            <div class="w-1 h-full bg-black"></div>
+                            <!-- vertical line -->
+                        </div>
+                        <div
+                            class="col-start-2 col-span-1 row-start-3 row-span-1 flex items-center justify-center"
+                        >
+                            <div class="w-1 h-full bg-black"></div>
+                            <!-- horizontal line -->
                         </div>
                         <!-- PC at middle-left -->
                         <div
@@ -220,7 +235,7 @@
                         <div
                             class="col-start-9 col-span-1 row-start-2 row-span-1 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
                         >
-                            Shift left 2
+                            Shift <br />left 2
                         </div>
 
                         <!-- Add (top-right) -->
@@ -242,7 +257,7 @@
                         >
                             Mux
                         </div>
-                    </div>
+                    </canvas>
                 </div>
 
                 <!-- Right Panel - Code Editor -->
