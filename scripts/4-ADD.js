@@ -1,24 +1,25 @@
 var canvas = document.getElementById('ADD-4');
 var ctx = canvas.getContext('2d');
-
+var initialPosX = 10;
+var initialPosY = 10;
 // Start a new path for the shape
 ctx.beginPath();
 
 // Move to the first point (starting point of the shape)
-ctx.moveTo(100, 100);
+ctx.moveTo(initialPosX, initialPosY);
 
 // Draw a line to the second point
-ctx.lineTo(100, 150);
+ctx.lineTo(initialPosX, initialPosY + 50);
 
 // Draw a line to the third point
-ctx.lineTo(120, 170);
+ctx.lineTo(initialPosX + 20, initialPosY + 70);
+ctx.lineTo(initialPosX, initialPosY + 90);
+ctx.lineTo(initialPosX, initialPosY + 140);
+ctx.lineTo(initialPosX + 100, initialPosY + 100);
+ctx.lineTo(initialPosX + 100, initialPosY + 40);
+ctx.lineTo(initialPosX, initialPosY);
 
-ctx.lineTo(100, 190);
-ctx.lineTo(100, 240);
 
-ctx.lineTo(200, 200);
-ctx.lineTo(200, 140);
-ctx.lineTo(100, 100);
 // Close the path by connecting back to the starting point
 // ctx.closePath();
 
@@ -31,3 +32,5 @@ ctx.stroke();
 ctx.font = '20px Arial';
 ctx.fillStyle = 'black';
 ctx.fillText('ADD', 150, 150);  
+
+console.log("ADD-4");
