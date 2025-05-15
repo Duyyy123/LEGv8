@@ -1,7 +1,7 @@
 var canvas = document.getElementById('ALU');
 var ctx = canvas.getContext('2d');
-var initialPosX = 10;
-var initialPosY = 10;
+var initialPosX = 20;
+var initialPosY = 20;
 
 // Start a new path for the shape
 ctx.beginPath();
@@ -33,4 +33,5 @@ ctx.stroke();
 ctx.font = '20px Arial';
 ctx.fillStyle = 'black';
 ctx.fillText('ALU', 250, 250); 
-console.log("ALU drawn"); 
+// console.log("ALU drawn"); 
+

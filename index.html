@@ -11,7 +11,6 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
         <link rel="stylesheet" href="styles/style.css" />
-        <script defer src="scripts/index.js"></script>
     </head>
     <body>
         <div id="app">
@@ -179,77 +178,49 @@
                         </div>
 
                         <!-- Center Panel - Main Display (Reserved for later) -->
-                        <div
-                            class="overflow-auto flex-1 bg-white p-4 flex flex-col"
-                        >
+                        <div class="flex-1 bg-white p-4 flex flex-col">
                             <div
-                                class="relative flex-1 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-500"
+                                class="relative flex-1 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-500 overflow-auto"
                             >
-                                <!-- OR COMPONENT -->
-                                <canvas
-                                    class="absolute top-[100px] left-[100px]"
-                                >
-                                    id="OR-GATE" width="300" height="300"
-                                    ></canvas
-                                >
-                                <!-- AND COMPONENT -->
-                                <canvas
-                                    class="absolute top-[100px] left-[400px]"
-                                    id="AND-GATE"
-                                    width="300"
-                                    height="300"
-                                ></canvas>
-                                <!-- ADD 4  COMPONENT -->
-                                <canvas
-                                    class="absolute top-[400px] left-[100px]"
-                                    id="ADD-4"
-                                    width="300"
-                                    height="300"
-                                ></canvas>
-                                <!-- ALU -->
-                                <canvas
-                                    class="absolute top-[400px] left-[400px]"
-                                    id="ALU"
-                                    width="500"
-                                    height="500"
-                                ></canvas>
-                                <!-- PC COMPONENT -->
-                                <div class="pc-component center-text">
-                                    <p>PC</p>
-                                </div>
-                                <!-- INSTRUCTION MEMORY -->
-                                <div class="instruction-memory center-text">
-                                    <p>
-                                        Read address <br />
-                                        Instruction [31-0] <br />
-                                        Instruction Memory
-                                    </p>
-                                </div>
-                                <!-- SIGN-EXTEND -->
-                                <div
-                                    class="absolute top-[400px] left-[400px] Small_Ellipse center-text"
-                                >
-                                    <p class="text_style">Sign-extend</p>
-                                </div>
+                                    <!-- OR COMPONENT -->
+                                    <canvas id="OR-GATE" width="200" height="200" class = "absolute top-[10px] left-[10px] border border-black"></canvas>
+                                    <!-- AND COMPONENT -->
+                                    <canvas id="AND-GATE" width="300" height="300" class = "absolute top-[10px] left-[300px] border border-black"></canvas>
+                                    <!-- ADD 4  COMPONENT -->
+                                    <canvas id="ADD-4" width="200" height="200" class = "absolute top-[300px] left-[0px] border border-black"></canvas>
+                                    <!-- ALU -->
+                                    <canvas id="ALU" width="200" height="200" class = "absolute top-[500px] left-[0px] border border-black"></canvas>
+                                    <!-- PC COMPONENT -->
+                                    <div class="pc-component center-text"> <p>PC</p> </div>
+                                    <!-- INSTRUCTION MEMORY -->
+                                    <div class="instruction-memory center-text">
+                                        <p> Read address <br>
+                                            Instruction [31-0] <br>
+                                            Instruction Memory
+                                        </p>
+                                    </div>
+                                    <!-- SIGN-EXTEND -->
+                                    <div class="absolute top-[400px] left-[400px] Small_Ellipse center-text">
+                                        <p class="text_style">Sign-extend</p>
+                                    </div>
 
-                                <!-- ALU -->
-                                <div
-                                    class="absolute top-[200px] left-[200px] Small_Ellipse center-text"
-                                >
-                                    <p class="text_style">ALU Control</p>
-                                </div>
+                                    <!-- ALU -->
+                                    <div class="absolute top-[200px] left-[200px] Small_Ellipse center-text">
+                                        <p class="text_style">ALU Control</p>
+                                    </div>
 
-                                <!-- DATA MEMORY -->
-                                <div
-                                    class="absolute left-[500px] top-[700px] w-[120px] h-[96px] border-2 border-gray-300 rounded-lg flex items-center justify-center bg-gray-100 mt-4"
-                                >
-                                    <p class="font-bold text-gray-700">
-                                        Address Read data <br />
-                                        Write data <br />
-                                        Data Memory
-                                    </p>
-                                </div>
-                                <div class="h-[1000px]"></div>
+                                    <!-- DATA MEMORY -->
+                                    <div
+                                        class="absolute left-[500px] top-[700px] w-[120px] h-[96px] border-2 border-gray-300 rounded-lg flex items-center justify-center bg-gray-100 mt-4"
+                                    >
+                                        <p class="font-bold text-gray-700">
+                                            Address Read data <br>
+                                            Write data <br>
+                                            Data Memory
+                                        </p>
+                                    </div>    
+                                        
+                                    
                             </div>
                         </div>
 
@@ -549,7 +520,7 @@
             </div>
         </div>
 
-        <script src="scripts/ALU.js"></script>
+        <script src="scripts/duyyy123.js"></script>
         <script src="scripts/index.js"></script>
         <script src="scripts/4-ADD.js"></script>
         <script src="scripts/AND.js"></script>
