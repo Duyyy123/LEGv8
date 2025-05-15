@@ -2,12 +2,26 @@
     font-family: "Courier New", monospace;
     font-size: 14px;
     line-height: 1.5;
-    background-color: #f8f8f8;
-    color: #333;
 }
 
 .register-cell {
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
+}
+
+.register-cell.changed {
+    background-color: #fef08a;
+}
+
+.memory-cell {
+    transition: background-color 0.3s;
+}
+
+.memory-cell.changed {
+    background-color: #fef08a;
+}
+
+.memory-cell.active {
+    background-color: #dbeafe;
 }
 
 .tab-content {
@@ -16,4 +30,114 @@
 
 .tab-content.active {
     display: block;
+}
+
+.pc-display {
+    font-size: 1.25rem;
+    color: #1d4ed8;
+}
+
+/* COMPONENTS */
+
+.add-4-component {
+    width: 0;
+    height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 100px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.Small_Ellipse {
+    width: 50px;
+    /* Horizontal size (major axis) */
+    height: 100px;
+    /* Vertical size (minor axis) */
+    background-color: lightblue;
+    border-radius: 50%;
+    /* This makes the div rounded */
+    border: 2px solid black;
+    margin: 20px auto;
+}
+
+.pc_rect{
+    width: 50px;
+    height: 100px;
+    background-color: lightblue;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin: 20px auto;
+}
+
+.Mux {
+    width: 50px;
+    /* Horizontal size (major axis) */
+    height: 100px;
+    /* Vertical size (minor axis) */
+    background-color: lightblue;
+    border-radius: 50%;
+    /* This makes the div rounded */
+    border: 2px solid black;
+    margin: 20px auto;
+}
+
+
+.center-text {
+  display: flex;
+  justify-content: center;  /* Căn giữa theo chiều ngang */
+  align-items: center;      /* Căn giữa theo chiều dọc */
+  height: 200px;            /* Đặt chiều cao cho div */
+}
+
+
+
+.instruction-memory {
+  position: absolute;
+  left: 500px;
+  top: 500px;
+  width: 120px;
+  height: 96px;
+  border: 2px solid #D1D5DB; /* Tailwind's gray-300 */
+  border-radius: 0.5rem; /* rounded-lg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F3F4F6; /* gray-100 */
+  margin-top: 1rem; /* mt-4 */
+}
+
+.instruction-memory p {
+  font-weight: bold;
+  color: #374151; /* gray-700 */
+  text-align: center;
+}
+
+.pc-component {
+  position: absolute;
+  left: 300px;
+  top: 500px;
+  width: 80px;
+  height: 60px;
+  border: 2px solid #D1D5DB; /* gray-300 */
+  border-radius: 0.5rem;
+  background-color: #F9FAFB; /* optional background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pc-component p {
+  font-weight: bold;
+  color: #374151; /* gray-700 */
+  text-align: center;
+  margin: 0;
+}
+
+.text_style {
+  font-weight: bold;
+  color: #374151; /* gray-700 */
+  margin: 0;
 }

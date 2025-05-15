@@ -178,122 +178,55 @@
                             </div>
                         </div>
 
-                        <!-- Center Panel - Main Display -->
+                        <!-- Center Panel - Main Display (Reserved for later) -->
                         <div class="flex-1 bg-white p-4 flex flex-col">
                             <div
-                                class="relative w-full h-screen border-2 border-dashed border-gray-300 rounded-lg grid grid-cols-20 grid-rows-20 gap-4"
+                                class="flex-1 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-500"
                             >
-                                <!-- Add (top-left) -->
-                                <div
-                                    class="col-start-3 col-span-1 row-start-2 row-span-1 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
-                                >
-                                    Add
-                                </div>
+                                <div class="text-center">
+                                    <!-- OR COMPONENT -->
+                                    <canvas id="OR-GATE" width="300" height="300"></canvas>
+                                    <!-- AND COMPONENT -->
+                                    <canvas id="AND-GATE" width="300" height="300"></canvas>
+                                    <!-- ADD 4  COMPONENT -->
+                                    <canvas id="ADD-4" width="300" height="300"></canvas>
+                                    <!-- ALU -->
+                                    <canvas id="ALU" width="500" height="500"></canvas>
+                                    <!-- PC COMPONENT -->
+                                    <div class="pc-component center-text"> <p>PC</p> </div>
+                                    <!-- INSTRUCTION MEMORY -->
+                                    <div class="instruction-memory center-text">
+                                        <p> Read address <br>
+                                            Instruction [31-0] <br>
+                                            Instruction Memory
+                                        </p>
+                                    </div>
+                                    <!-- SIGN-EXTEND -->
+                                    <div class="absolute top-[400px] left-[400px] Small_Ellipse center-text">
+                                        <p class="text_style">Sign-extend</p>
+                                    </div>
 
-                                <!-- Path Line from Add to PC -->
-                                <div
-                                    class="col-start-3 col-span-1 row-start-3 row-span-1 flex items-center justify-center"
-                                >
-                                    <div class="w-1 h-full bg-black"></div>
-                                </div>
-                                <div
-                                    class="col-start-2 col-span-1 row-start-3 row-span-1 flex items-center justify-center"
-                                >
-                                    <div class="w-1 h-full bg-black"></div>
-                                </div>
+                                    <!-- ALU -->
+                                    <div class="absolute top-[200px] left-[200px] Small_Ellipse center-text">
+                                        <p class="text_style">ALU Control</p>
+                                    </div>
 
-                                <!-- PC at middle-left -->
-                                <div
-                                    class="col-start-2 col-span-1 row-start-4 row-span-2 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
-                                >
-                                    PC
-                                </div>
-
-                                <!-- Instruction Memory next to PC -->
-                                <div
-                                    class="col-start-3 col-span-1 row-start-5 row-span-2 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
-                                >
-                                    Instruction <br />Memory
-                                </div>
-
-                                <!-- Mux -->
-                                <div
-                                    class="col-start-5 col-span-1 row-start-5 row-span-1 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
-                                >
-                                    Mux
-                                </div>
-
-                                <!-- Registers -->
-                                <div
-                                    class="col-start-6 col-span-2 row-start-4 row-span-3 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
-                                >
-                                    Registers
-                                </div>
-
-                                <!-- Sign-extend -->
-                                <div
-                                    class="col-start-6 col-span-1 row-start-7 row-span-1 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
-                                >
-                                    Sign-extend
-                                </div>
-
-                                <!-- Mux  -->
-                                <div
-                                    class="col-start-9 col-span-1 row-start-6 row-span-1 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
-                                >
-                                    Mux
-                                </div>
-
-                                <!-- Control around center-left -->
-                                <div
-                                    class="col-start-6 col-span-2 row-start-2 row-span-2 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
-                                >
-                                    Control
-                                </div>
-
-                                <!-- ALU Control -->
-                                <div
-                                    class="col-start-10 col-span-1 row-start-7 row-span-1 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
-                                >
-                                    ALU<br />Control
-                                </div>
-
-                                <!-- ALU -->
-                                <div
-                                    class="col-start-11 col-span-1 row-start-5 row-span-2 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
-                                >
-                                    ALU
-                                </div>
-
-                                <!-- Shift Left 2 -->
-                                <div
-                                    class="col-start-9 col-span-1 row-start-2 row-span-1 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
-                                >
-                                    Shift <br />left 2
-                                </div>
-
-                                <!-- Add (top-right) -->
-                                <div
-                                    class="col-start-10 col-span-1 row-start-3 row-span-2 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
-                                >
-                                    Add
-                                </div>
-
-                                <!-- Data Memory -->
-                                <div
-                                    class="col-start-12 col-span-1 row-start-5 row-span-3 border border-black flex items-center justify-center text-center bg-gray-100 rounded-lg"
-                                >
-                                    Data <br />Memory
-                                </div>
-
-                                <!-- Mux  -->
-                                <div
-                                    class="col-start-13 col-span-1 row-start-5 row-span-1 border border-black flex items-center justify-center bg-gray-100 rounded-lg"
-                                >
-                                    Mux
+                                    <!-- DATA MEMORY -->
+                                    <div
+                                        class="absolute left-[500px] top-[700px] w-[120px] h-[96px] border-2 border-gray-300 rounded-lg flex items-center justify-center bg-gray-100 mt-4"
+                                    >
+                                        <p class="font-bold text-gray-700">
+                                            Address Read data <br>
+                                            Write data <br>
+                                            Data Memory
+                                        </p>
+                                    </div>    
+                                        
+                                    
                                 </div>
                             </div>
                         </div>
+
 
                         <!-- Right Panel - Code Editor -->
                         <div
@@ -590,5 +523,11 @@
                 </div>
             </div>
         </div>
+
+        <script src="scripts/ALU.js"></script>
+        <script src="scripts/index.js"></script>
+        <script src="scripts/4-ADD.js"></script>
+        <script src="scripts/AND.js"></script>
+        <script src="scripts/OR.js"></script>
     </body>
 </html>
