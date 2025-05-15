@@ -2,28 +2,18 @@
     font-family: "Courier New", monospace;
     font-size: 14px;
     line-height: 1.5;
+    background-color: #f8f8f8;
+    color: #333;
 }
+
 .register-cell {
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
-.register-cell.changed {
-    background-color: #fef08a;
-}
-.memory-cell {
-    transition: background-color 0.3s;
-}
-.memory-cell.changed {
-    background-color: #fef08a;
-}
-.memory-cell.active {
-    background-color: #dbeafe;
-}
+
 .tab-content {
     display: none;
 }
+
 .tab-content.active {
     display: block;
-}
-.pc-display {
-    justify-content: left;
 }

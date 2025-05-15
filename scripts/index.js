@@ -1,202 +1,240 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Tab switching
-    const tabButtons = document.querySelectorAll(".tab-btn");
-    tabButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            const tabId = this.getAttribute("data-tab");
+const { createApp, ref, reactive, computed } = Vue;
 
-            // Remove active class from all buttons and tabs
-            tabButtons.forEach((btn) =>
-                btn.classList.remove("active", "bg-gray-700"),
+createApp({
+    setup() {
+        // Simulator state
+        const simulatorState = ref("Ready");
+        const pcValue = ref("0x00000000");
+        const cycleCount = ref(0);
+        const executionSpeed = ref(5);
+        const activeTab = ref("registers");
+
+        // Code editor
+        const assemblyCode = ref("");
+        const currentLine = ref(1);
+        const currentCol = ref(1);
+
+        // Breakpoints
+        const newBreakpoint = ref("");
+        const breakpoints = ref([]);
+
+        // Registers
+        const registers = reactive({
+            general: Array.from({ length: 32 }, (_, i) => ({
+                name: `X${i}`,
+                value: "0x00000000",
+                highlight: false,
+            })),
+            special: [
+                {
+                    name: "SP",
+                    value: "0x7FFFFFF0",
+                    highlight: false,
+                },
+                {
+                    name: "FP",
+                    value: "0x7FFFFFF0",
+                    highlight: false,
+                },
+                {
+                    name: "LR",
+                    value: "0x00000000",
+                    highlight: false,
+                },
+                {
+                    name: "PC",
+                    value: "0x00000000",
+                    highlight: false,
+                },
+            ],
+            status: [
+                {
+                    name: "NZCV",
+                    value: "0x00000000",
+                    highlight: false,
+                },
+                {
+                    name: "PSTATE",
+                    value: "0x00000000",
+                    highlight: false,
+                },
+            ],
+        });
+
+        // Memory
+        const memoryAddress = ref("0x00000000");
+        const memoryRows = ref(
+            Array.from({ length: 32 }, (_, i) => ({
+                address: `0x${(i * 8).toString(16).padStart(8, "0")}`,
+                bytes: Array.from({ length: 8 }, (_, j) => ({
+                    value: "00",
+                    highlight: false,
+                })),
+            })),
+        );
+
+        // Stack
+        const stackPointer = ref("0x7FFFFFF0");
+        const stackEntries = ref([
+            {
+                address: "0x7FFFFFF0",
+                value: "0x00000000",
+                note: "Bottom",
+            },
+            {
+                address: "0x7FFFFFE8",
+                value: "0x00000000",
+                note: "",
+            },
+            {
+                address: "0x7FFFFFE0",
+                value: "0x00000000",
+                note: "",
+            },
+        ]);
+
+        // Methods
+        const updateCursorPosition = (event) => {
+            const textarea = event.target;
+            const cursorPos = textarea.selectionStart;
+            const textLines = textarea.value.substr(0, cursorPos).split("\n");
+            currentLine.value = textLines.length;
+            currentCol.value = textLines[textLines.length - 1].length + 1;
+        };
+
+        const assemble = () => {
+            simulatorState.value = "Assembling...";
+            // Simulate assembly delay
+            setTimeout(() => {
+                simulatorState.value = "Ready";
+                // Highlight some registers for demo
+                registers.general[0].highlight = true;
+                registers.general[1].highlight = true;
+                registers.special[3].highlight = true;
+                pcValue.value = "0x00000004";
+            }, 500);
+        };
+
+        const run = () => {
+            simulatorState.value = "Running";
+            cycleCount.value = 0;
+            // Simulate running
+            const interval = setInterval(() => {
+                cycleCount.value++;
+                if (cycleCount.value >= 10) {
+                    clearInterval(interval);
+                    simulatorState.value = "Finished";
+                }
+            }, 1000 / executionSpeed.value);
+        };
+
+        const step = () => {
+            simulatorState.value = "Stepping";
+            cycleCount.value++;
+            // Simulate step
+            setTimeout(() => {
+                simulatorState.value = "Paused";
+                // Update some memory for demo
+                memoryRows.value[0].bytes[0].value = "FF";
+                memoryRows.value[0].bytes[0].highlight = true;
+            }, 300);
+        };
+
+        const pause = () => {
+            simulatorState.value = "Paused";
+        };
+
+        const reset = () => {
+            simulatorState.value = "Ready";
+            cycleCount.value = 0;
+            pcValue.value = "0x00000000";
+            // Reset highlights
+            registers.general.forEach((reg) => (reg.highlight = false));
+            registers.special.forEach((reg) => (reg.highlight = false));
+            registers.status.forEach((reg) => (reg.highlight = false));
+            memoryRows.value.forEach((row) => {
+                row.bytes.forEach((byte) => {
+                    byte.value = "00";
+                    byte.highlight = false;
+                });
+            });
+        };
+
+        const addBreakpoint = () => {
+            if (
+                newBreakpoint.value &&
+                !breakpoints.value.includes(newBreakpoint.value)
+            ) {
+                breakpoints.value.push(newBreakpoint.value);
+                newBreakpoint.value = "";
+            }
+        };
+
+        const removeBreakpoint = (index) => {
+            breakpoints.value.splice(index, 1);
+        };
+
+        const loadCode = () => {
+            // In a real app, this would load from a file
+            assemblyCode.value = `// Sample LEGv8 code
+ADD X0, X1, X2
+SUB X3, X4, X5
+LDUR X6, [X7, #0]
+STUR X8, [X9, #8]`;
+        };
+
+        const saveCode = () => {
+            // In a real app, this would save to a file
+            alert("Code saved (simulated)");
+        };
+
+        const clearCode = () => {
+            assemblyCode.value = "";
+        };
+
+        const loadMemory = () => {
+            // In a real app, this would load memory from the specified address
+            alert(`Loading memory from ${memoryAddress.value}`);
+        };
+
+        const showHelp = () => {
+            alert(
+                "LEGv8 Simulator Help\n\nUse the controls to assemble and run your code.",
             );
-            document
-                .querySelectorAll(".tab-content")
-                .forEach((tab) => tab.classList.remove("active"));
+        };
 
-            // Add active class to clicked button and corresponding tab
-            this.classList.add("active", "bg-gray-700");
-            document.getElementById(tabId).classList.add("active");
-        });
-    });
+        return {
+            // State
+            simulatorState,
+            pcValue,
+            cycleCount,
+            executionSpeed,
+            activeTab,
+            assemblyCode,
+            currentLine,
+            currentCol,
+            newBreakpoint,
+            breakpoints,
+            registers,
+            memoryAddress,
+            memoryRows,
+            stackPointer,
+            stackEntries,
 
-    // Track cursor position in code editor
-    const codeEditor = document.getElementById("assemblyCode");
-    const currentLine = document.getElementById("currentLine");
-    const currentCol = document.getElementById("currentCol");
-
-    codeEditor.addEventListener("input", updateCursorPosition);
-    codeEditor.addEventListener("click", updateCursorPosition);
-    codeEditor.addEventListener("keyup", updateCursorPosition);
-
-    function updateCursorPosition() {
-        const cursorPosition = codeEditor.selectionStart;
-        const textBeforeCursor = codeEditor.value.substring(0, cursorPosition);
-        const lineNumber = textBeforeCursor.split("\n").length;
-        const colNumber =
-            cursorPosition - textBeforeCursor.lastIndexOf("\n") - 1;
-
-        currentLine.textContent = lineNumber;
-        currentCol.textContent = Math.max(1, colNumber + 1);
-    }
-
-    // Initialize registers display
-    const registersContainer = document.querySelector(
-        "#registers .grid.grid-cols-3.gap-1",
-    );
-    const registerTemplate =
-        document.getElementById("registerTemplate").content;
-
-    for (let i = 0; i < 31; i++) {
-        const registerClone = registerTemplate.cloneNode(true);
-        const registerDiv = registerClone.querySelector(".register-cell");
-        const registerName = registerDiv.querySelector("span:first-child");
-        const registerValue = registerDiv.querySelector("span:last-child");
-
-        registerName.textContent = `X${i}`;
-        registerValue.textContent = `0x${(0).toString(16).padStart(8, "0")}`;
-        registerDiv.id = `register-X${i}`;
-
-        registersContainer.appendChild(registerClone);
-    }
-
-    // Initialize stack display
-    const stackContainer = document.querySelector(".stack-view");
-    for (let i = 0; i < 10; i++) {
-        const address = 0x7ffffff0 - i * 8;
-        const row = document.createElement("div");
-        row.className = "stack-row grid grid-cols-3 gap-1";
-
-        // Address
-        const addrCell = document.createElement("div");
-        addrCell.className = "stack-address text-gray-400";
-        addrCell.textContent = `0x${address.toString(16).padStart(8, "0")}`;
-        row.appendChild(addrCell);
-
-        // Value
-        const valueCell = document.createElement("div");
-        valueCell.className = "stack-value bg-gray-700 px-2 py-1 rounded";
-        valueCell.textContent = `0x${(0).toString(16).padStart(8, "0")}`;
-        row.appendChild(valueCell);
-
-        // Note
-        const noteCell = document.createElement("div");
-        noteCell.className = "stack-note text-gray-400 text-xs";
-        noteCell.textContent = i === 0 ? "[SP]" : "";
-        row.appendChild(noteCell);
-
-        stackContainer.appendChild(row);
-    }
-
-    // Simulate button clicks
-    document
-        .getElementById("assembleBtn")
-        .addEventListener("click", function () {
-            document.getElementById("simulatorState").textContent = "Assembled";
-            highlightRandomRegister();
-        });
-
-    document.getElementById("runBtn").addEventListener("click", function () {
-        document.getElementById("simulatorState").textContent = "Running";
-        updatePC();
-    });
-
-    document.getElementById("stepBtn").addEventListener("click", function () {
-        document.getElementById("simulatorState").textContent = "Stepping";
-        updatePC();
-        highlightRandomRegister();
-        updateRandomMemory();
-    });
-
-    document.getElementById("pauseBtn").addEventListener("click", function () {
-        document.getElementById("simulatorState").textContent = "Paused";
-    });
-
-    document.getElementById("resetBtn").addEventListener("click", function () {
-        document.getElementById("simulatorState").textContent = "Ready";
-        document.getElementById("pcValue").textContent = "0x00000000";
-        document.getElementById("cycleCount").textContent = "0";
-
-        // Reset all register highlights
-        document.querySelectorAll(".register-cell").forEach((cell) => {
-            cell.classList.remove("changed");
-        });
-
-        // Reset memory highlights
-        document.querySelectorAll(".memory-cell").forEach((cell) => {
-            cell.classList.remove("changed", "active");
-            cell.textContent = "00";
-        });
-    });
-
-    // Helper functions for simulation
-    function highlightRandomRegister() {
-        // Remove previous highlights
-        document.querySelectorAll(".register-cell").forEach((cell) => {
-            cell.classList.remove("changed");
-        });
-
-        // Highlight a random register
-        const randomReg = Math.floor(Math.random() * 31);
-        const register = document.getElementById(`register-X${randomReg}`);
-        if (register) {
-            register.classList.add("changed");
-
-            // Update value with a random number
-            const randomValue = Math.floor(Math.random() * 256);
-            register.querySelector("span:last-child").textContent =
-                `0x${randomValue.toString(16).padStart(8, "0")}`;
-        }
-    }
-
-    function updatePC() {
-        const pcElement = document.getElementById("pcValue");
-        let currentPC = parseInt(pcElement.textContent.substring(2), 16);
-        currentPC += 4; // Increment PC by 4 (assuming 4-byte instructions)
-        pcElement.textContent = `0x${currentPC.toString(16).padStart(8, "0")}`;
-
-        // Update cycle count
-        const cycleElement = document.getElementById("cycleCount");
-        let cycles = parseInt(cycleElement.textContent);
-        cycleElement.textContent = (cycles + 1).toString();
-    }
-
-    function updateRandomMemory() {
-        // Remove previous highlights
-        document.querySelectorAll(".memory-cell").forEach((cell) => {
-            cell.classList.remove("changed", "active");
-        });
-
-        // Update a random memory location
-        const randomCell = document.querySelector(
-            `.memory-cell[data-address="${Math.floor(Math.random() * 256)}"]`,
-        );
-        if (randomCell) {
-            randomCell.classList.add("changed");
-            randomCell.textContent = Math.floor(Math.random() * 256)
-                .toString(16)
-                .padStart(2, "0");
-        }
-
-        // Highlight PC location in memory
-        const pcValue = document.getElementById("pcValue").textContent;
-        const pcAddress = parseInt(pcValue.substring(2), 16) % 256;
-        const pcCell = document.querySelector(
-            `.memory-cell[data-address="${pcAddress}"]`,
-        );
-        if (pcCell) {
-            pcCell.classList.add("active");
-        }
-    }
-});
-
-const c = document.getElementById("mainCanvas");
-const ctx = c.getContext("2d");
-ctx.fillStyle = "red";
-ctx.fillRect(20, 20, 75, 50);
-
-//Turn transparency on
-ctx.globalAlpha = 0.2;
-ctx.fillStyle = "blue";
-ctx.fillRect(50, 50, 75, 50);
-ctx.fillStyle = "green";
-ctx.fillRect(80, 80, 75, 50);
+            // Methods
+            updateCursorPosition,
+            assemble,
+            run,
+            step,
+            pause,
+            reset,
+            addBreakpoint,
+            removeBreakpoint,
+            loadCode,
+            saveCode,
+            clearCode,
+            loadMemory,
+            showHelp,
+        };
+    },
+}).mount("#app");
