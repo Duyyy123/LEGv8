@@ -1,24 +1,26 @@
 var canvas = document.getElementById('ALU');
 var ctx = canvas.getContext('2d');
+var initialPosX = 10;
+var initialPosY = 10;
 
 // Start a new path for the shape
 ctx.beginPath();
 
 // Move to the first point (starting point of the shape)
-ctx.moveTo(200, 200);
+ctx.moveTo(initialPosX, initialPosY);
 
 // Draw a line to the second point
-ctx.lineTo(200, 250);
+ctx.lineTo(initialPosX, initialPosY + 50);
 
 // Draw a line to the third point
-ctx.lineTo(220, 270);
+ctx.lineTo(initialPosX + 20, initialPosY + 70);
 
-ctx.lineTo(200, 290);
-ctx.lineTo(200, 340);
+ctx.lineTo(initialPosX, initialPosY + 90);
+ctx.lineTo(initialPosX, initialPosY + 140);
 
-ctx.lineTo(300, 300);
-ctx.lineTo(300, 240);
-ctx.lineTo(200, 200);
+ctx.lineTo(initialPosX + 100, initialPosY + 100);
+ctx.lineTo(initialPosX + 100, initialPosY + 40);
+ctx.lineTo(initialPosX, initialPosY);
 // Close the path by connecting back to the starting point
 // ctx.closePath();
 
@@ -30,4 +32,5 @@ ctx.stroke();
 
 ctx.font = '20px Arial';
 ctx.fillStyle = 'black';
-ctx.fillText('ALU', 250, 250);  
+ctx.fillText('ALU', 250, 250); 
+console.log("ALU drawn"); 
